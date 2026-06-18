@@ -1,0 +1,33 @@
+import 'package:am3_taller/presentation/auth/login.dart';
+import 'package:am3_taller/presentation/auth/register.dart';
+import 'package:am3_taller/presentation/streaming/favorites.dart';
+import 'package:am3_taller/presentation/streaming/home.dart';
+import 'package:am3_taller/presentation/streaming/search.dart';
+import 'package:am3_taller/presentation/welcome/welcome.dart';
+import 'package:am3_taller/presentation/profiles/profile.dart';
+import 'package:am3_taller/presentation/streaming/streaming.dart';
+import 'package:flutter/material.dart';
+
+class MainApp extends StatelessWidget {
+  const MainApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.cyan),
+      ),
+      routes: {
+        "/": (context) => WelcomeScreen(),
+        "/login": (context) => LoginScreen(),
+        "/register": (context) => RegisterScreen(),
+        "/profiles": (context) => ProfileScreen(),
+        "/home": (context) => HomeScreen(),
+        "/streaming": (context) => StreamingScreen(),
+        "/search": (context) => SearchScreen(),
+        "/favorites": (context) => FavoritesScreen(),
+      },
+    );
+  }
+}
