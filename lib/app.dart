@@ -3,7 +3,9 @@ import 'package:am3_taller/presentation/auth/register.dart';
 import 'package:am3_taller/presentation/streaming/favorites.dart';
 import 'package:am3_taller/presentation/streaming/home.dart';
 import 'package:am3_taller/presentation/streaming/movie_detail.dart';
+import 'package:am3_taller/presentation/streaming/movies.dart';
 import 'package:am3_taller/presentation/streaming/search.dart';
+import 'package:am3_taller/presentation/streaming/series.dart';
 import 'package:am3_taller/presentation/welcome/welcome.dart';
 import 'package:am3_taller/presentation/profiles/profile.dart';
 import 'package:am3_taller/presentation/streaming/streaming.dart';
@@ -17,8 +19,12 @@ class MainApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.cyan),
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: Colors.cyan,
+        ).copyWith(surface: const Color.fromARGB(255, 24, 24, 24)),
+        scaffoldBackgroundColor: const Color.fromARGB(255, 24, 24, 24),
       ),
+      themeMode: ThemeMode.dark,
       routes: {
         "/": (context) => WelcomeScreen(),
         "/login": (context) => LoginScreen(),
@@ -29,6 +35,8 @@ class MainApp extends StatelessWidget {
         "/search": (context) => SearchScreen(),
         "/favorites": (context) => FavoritesScreen(),
         "/movie-detail": (context) => MovieDetailScreen(),
+        "/series": (context) => SeriesScreen(),
+        "/movies": (context) => MoviesScreen(),
       },
     );
   }

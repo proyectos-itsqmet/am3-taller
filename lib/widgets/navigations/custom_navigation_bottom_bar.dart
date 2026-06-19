@@ -15,6 +15,15 @@ class CustomBottomNavigationBar extends StatelessWidget {
     return BottomNavigationBar(
       currentIndex: indice,
       onTap: onTap,
+      selectedIconTheme: IconThemeData(color: Colors.white, size: 24),
+      selectedLabelStyle: TextStyle(fontWeight: FontWeight.w700, fontSize: 12),
+      selectedItemColor: Colors.white,
+      unselectedItemColor: Colors.white70,
+      unselectedIconTheme: IconThemeData(color: Colors.white70, size: 22),
+      unselectedLabelStyle: TextStyle(
+        fontWeight: FontWeight.w400,
+        fontSize: 12,
+      ),
       items: [
         BottomNavigationBarItem(icon: Icon(Icons.home), label: "Inicio"),
         BottomNavigationBarItem(icon: Icon(Icons.search), label: "Buscar"),
