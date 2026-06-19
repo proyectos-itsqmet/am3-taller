@@ -39,8 +39,11 @@ class HomeCarousel extends StatelessWidget {
                       ),
                     ),
                     FilledButton(
-                      onPressed: () =>
-                          Navigator.pushNamed(context, "/movie-detail"),
+                      onPressed: () => Navigator.pushNamed(
+                        context,
+                        "/movie-detail",
+                        arguments: {"id": i.id},
+                      ),
                       style: ButtonStyle(
                         backgroundColor: WidgetStatePropertyAll(Colors.white),
                       ),
