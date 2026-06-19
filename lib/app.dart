@@ -2,6 +2,7 @@ import 'package:am3_taller/presentation/auth/login.dart';
 import 'package:am3_taller/presentation/auth/register.dart';
 import 'package:am3_taller/presentation/streaming/favorites.dart';
 import 'package:am3_taller/presentation/streaming/home.dart';
+import 'package:am3_taller/presentation/streaming/movie_detail.dart';
 import 'package:am3_taller/presentation/streaming/search.dart';
 import 'package:am3_taller/presentation/welcome/welcome.dart';
 import 'package:am3_taller/presentation/profiles/profile.dart';
@@ -27,6 +28,7 @@ class MainApp extends StatelessWidget {
         "/streaming": (context) => StreamingScreen(),
         "/search": (context) => SearchScreen(),
         "/favorites": (context) => FavoritesScreen(),
+        "/movie-detail": (context) => MovieDetailScreen(),
       },
     );
   }
