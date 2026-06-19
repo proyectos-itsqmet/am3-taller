@@ -1,5 +1,6 @@
 import 'package:am3_taller/utils/constants/movies_list.dart';
 import 'package:am3_taller/utils/constants/sizes.dart';
+import 'package:am3_taller/widgets/spacer/custom_spacer.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
@@ -32,12 +33,14 @@ class HomeCarousel extends StatelessWidget {
                   children: [
                     Text(
                       i.title,
+                      textAlign: TextAlign.center,
                       style: TextStyle(
-                        fontSize: CustomSizes.fontSizeMd,
+                        fontSize: CustomSizes.fontSizeLg,
                         fontWeight: FontWeight.w700,
                         color: Colors.white,
                       ),
                     ),
+                    CustomSpacer(height: CustomSizes.sm),
                     FilledButton(
                       onPressed: () => Navigator.pushNamed(
                         context,
@@ -46,10 +49,15 @@ class HomeCarousel extends StatelessWidget {
                       ),
                       style: ButtonStyle(
                         backgroundColor: WidgetStatePropertyAll(Colors.white),
+                        shape: WidgetStatePropertyAll(
+                          RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                        ),
                       ),
                       child: Text(
                         "Ver ahora",
-                        style: TextStyle(color: Colors.blue),
+                        style: TextStyle(color: Colors.cyan.shade800),
                       ),
                     ),
                   ],

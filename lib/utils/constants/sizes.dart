@@ -13,4 +13,7 @@ class CustomSizes {
   static const double fontSizeSm = 14.0;
   static const double fontSizeMd = 16.0;
   static const double fontSizeLg = 18.0;
+  static const double fontSizeXL = 20.0;
+  static const double fontSize2XL = 22.0;
+  static const double fontSize3XL = 24.0;
 }

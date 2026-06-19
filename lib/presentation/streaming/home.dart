@@ -1,7 +1,9 @@
+import 'package:am3_taller/utils/constants/categories_list.dart';
 import 'package:am3_taller/utils/constants/movies_list.dart';
 import 'package:am3_taller/utils/constants/sizes.dart';
 import 'package:am3_taller/widgets/carousel/home_carousel.dart';
-import 'package:am3_taller/widgets/lists/horizontal_list.dart';
+import 'package:am3_taller/widgets/lists/horizontal_category_list.dart';
+import 'package:am3_taller/widgets/lists/horizontal_movies_list.dart';
 import 'package:am3_taller/widgets/spacer/custom_spacer.dart';
 import 'package:flutter/material.dart';
 
@@ -15,29 +17,15 @@ class HomeScreen extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              Text(
-                "Streamming App",
-                style: TextStyle(
-                  fontSize: CustomSizes.fontSizeLg,
-                  fontWeight: FontWeight.w900,
-                ),
-              ),
-              CustomSpacer(height: CustomSizes.spaceBtwItems),
-              Text(
-                "Menu - Menu - Menu",
-                style: TextStyle(
-                  fontSize: CustomSizes.fontSizeMd,
-                  fontWeight: FontWeight.w700,
-                ),
-              ),
-              CustomSpacer(height: CustomSizes.spaceBtwItems),
+              Image.asset("assets/logo.png", height: 30),
+              HorizontalCategoryList(categories: categories),
               HomeCarousel(),
               CustomSpacer(height: CustomSizes.spaceBtwItems),
-              HorizontalList(title: "Lanzamientos", movies: movies),
+              HorizontaMovieslList(title: "Lanzamientos", movies: movies),
               CustomSpacer(height: CustomSizes.spaceBtwItems),
-              HorizontalList(title: "Seguir viendo", movies: movies),
+              HorizontaMovieslList(title: "Seguir viendo", movies: movies),
               CustomSpacer(height: CustomSizes.spaceBtwItems),
-              HorizontalList(title: "Recomendadas", movies: movies),
+              HorizontaMovieslList(title: "Recomendadas", movies: movies),
               CustomSpacer(height: CustomSizes.spaceBtwItems),
             ],
           ),

@@ -3,11 +3,15 @@ import 'package:am3_taller/utils/constants/sizes.dart';
 import 'package:am3_taller/widgets/spacer/custom_spacer.dart';
 import 'package:flutter/material.dart';
 
-class HorizontalList extends StatelessWidget {
+class HorizontaMovieslList extends StatelessWidget {
   final String title;
   final List<Movies> movies;
 
-  const HorizontalList({super.key, required this.title, required this.movies});
+  const HorizontaMovieslList({
+    super.key,
+    required this.title,
+    required this.movies,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -22,6 +26,7 @@ class HorizontalList extends StatelessWidget {
             style: TextStyle(
               fontSize: CustomSizes.fontSizeMd,
               fontWeight: FontWeight.w700,
+              color: Colors.white,
             ),
           ),
         ),
