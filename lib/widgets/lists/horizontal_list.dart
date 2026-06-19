@@ -35,7 +35,11 @@ class HorizontalList extends StatelessWidget {
               final item = movies[index];
 
               return GestureDetector(
-                onTap: () => Navigator.pushNamed(context, "/movie-detail"),
+                onTap: () => Navigator.pushNamed(
+                  context,
+                  "/movie-detail",
+                  arguments: {"id": item.id},
+                ),
                 child: Container(
                   margin: EdgeInsets.only(
                     left: index == 0 ? CustomSizes.md : 0,
