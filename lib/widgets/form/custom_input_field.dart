@@ -21,7 +21,7 @@ class CustomInputField extends StatefulWidget {
 }
 
 class _CustomInputFieldState extends State<CustomInputField> {
-  bool obscureText = false;
+  bool obscureText = true;
 
   Future<void> pickDate() async {
     final DateTime? picked = await showDatePicker(
@@ -69,7 +69,7 @@ class _CustomInputFieldState extends State<CustomInputField> {
                   obscureText = !obscureText;
                 }),
                 icon: Icon(
-                  obscureText ? Icons.visibility_off : Icons.visibility,
+                  obscureText ? Icons.visibility : Icons.visibility_off,
                   color: Colors.grey[400],
                 ),
               )

@@ -1,4 +1,4 @@
-import 'package:am3_taller/widgets/form/register_form.dart';
+import 'package:am3_taller/presentation/auth/register_form.dart';
 import 'package:flutter/material.dart';
 
 class RegisterScreen extends StatelessWidget {
