@@ -1,5 +1,7 @@
 import 'package:am3_taller/presentation/auth/login.dart';
 import 'package:am3_taller/presentation/auth/register.dart';
+import 'package:am3_taller/presentation/profiles/choose_profile.dart';
+import 'package:am3_taller/presentation/profiles/create_profile.dart';
 import 'package:am3_taller/presentation/streaming/favorites.dart';
 import 'package:am3_taller/presentation/streaming/home.dart';
 import 'package:am3_taller/presentation/streaming/movie_detail.dart';
@@ -30,6 +32,8 @@ class MainApp extends StatelessWidget {
         "/login": (context) => LoginScreen(),
         "/register": (context) => RegisterScreen(),
         "/profiles": (context) => ProfileScreen(),
+        "/create-profile": (context) => CreateProfile(),
+        "/choose-profile": (context) => ChooseProfile(),
         "/home": (context) => HomeScreen(),
         "/streaming": (context) => StreamingScreen(),
         "/search": (context) => SearchScreen(),

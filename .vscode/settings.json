@@ -1,0 +1,4 @@
+{
+  "clangd.enableCodeCompletion": false,
+  "geminicodeassist.inlineSuggestions.enableAuto": false
+}
