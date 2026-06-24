@@ -38,6 +38,7 @@ class MainApp extends StatelessWidget {
         "/streaming": (context) => StreamingScreen(),
         "/search": (context) => SearchScreen(),
         "/favorites": (context) => FavoritesScreen(),
+        "/profile": (context) => ProfileScreen(),
         "/movie-detail": (context) => MovieDetailScreen(),
         "/series": (context) => SeriesScreen(),
         "/movies": (context) => MoviesScreen(),

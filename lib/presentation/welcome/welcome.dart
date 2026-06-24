@@ -20,7 +20,7 @@ class WelcomeScreen extends StatelessWidget {
                   children: [
                     Image.asset('assets/logo.png', height: 60),
                     Text(
-                      'Contrata este servicio desde 5.99 al mes. Cancela en cualquier momento',
+                      'Contrata este servicio desde \$5.99 al mes. Cancela en cualquier momento',
                       style: TextStyle(color: Colors.white),
                       textAlign: .center,
                     ),

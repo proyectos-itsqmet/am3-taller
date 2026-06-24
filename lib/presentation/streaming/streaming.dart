@@ -1,5 +1,6 @@
 import 'package:am3_taller/presentation/streaming/favorites.dart';
 import 'package:am3_taller/presentation/streaming/home.dart';
+import 'package:am3_taller/presentation/streaming/profile.dart';
 import 'package:am3_taller/presentation/streaming/search.dart';
 import 'package:am3_taller/widgets/navigations/custom_navigation_bottom_bar.dart';
 import 'package:flutter/material.dart';
@@ -13,7 +14,12 @@ class StreamingScreen extends StatefulWidget {
 
 class _StreamingScreenState extends State<StreamingScreen> {
   int indice = 0;
-  List<Widget> paginas = [HomeScreen(), SearchScreen(), FavoritesScreen()];
+  List<Widget> paginas = [
+    HomeScreen(),
+    SearchScreen(),
+    FavoritesScreen(),
+    ProfileScreen(),
+  ];
 
   @override
   Widget build(BuildContext context) {
