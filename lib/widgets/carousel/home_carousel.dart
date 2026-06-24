@@ -12,7 +12,13 @@ class HomeCarousel extends StatelessWidget {
     final double height = MediaQuery.of(context).size.height;
 
     return CarouselSlider(
-      options: CarouselOptions(height: height * 0.60),
+      options: CarouselOptions(
+        height: height * 0.60,
+        autoPlay: true,
+        autoPlayInterval: Duration(seconds: 3),
+        autoPlayAnimationDuration: Duration(milliseconds: 1200),
+        autoPlayCurve: Curves.fastOutSlowIn,
+      ),
       items: movies.map((i) {
         return Builder(
           builder: (BuildContext context) {

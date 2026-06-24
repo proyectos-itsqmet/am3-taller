@@ -13,6 +13,7 @@ class CustomBottomNavigationBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
+      showUnselectedLabels: true,
       currentIndex: indice,
       onTap: onTap,
       selectedIconTheme: IconThemeData(color: Colors.white, size: 24),
@@ -28,6 +29,7 @@ class CustomBottomNavigationBar extends StatelessWidget {
         BottomNavigationBarItem(icon: Icon(Icons.home), label: "Inicio"),
         BottomNavigationBarItem(icon: Icon(Icons.search), label: "Buscar"),
         BottomNavigationBarItem(icon: Icon(Icons.star), label: "Favoritos"),
+        BottomNavigationBarItem(icon: Icon(Icons.person), label: "Perfil"),
       ],
     );
   }

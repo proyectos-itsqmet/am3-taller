@@ -11,7 +11,13 @@ class WelcomeCarousel extends StatelessWidget {
     final double width = MediaQuery.of(context).size.width;
 
     return CarouselSlider(
-      options: CarouselOptions(height: height * 0.50),
+      options: CarouselOptions(
+        height: height * 0.50,
+        autoPlay: true,
+        autoPlayInterval: Duration(seconds: 3),
+        autoPlayAnimationDuration: Duration(milliseconds: 300),
+        autoPlayCurve: Curves.fastOutSlowIn,
+      ),
       items: movies.map((i) {
         return Builder(
           builder: (BuildContext context) {

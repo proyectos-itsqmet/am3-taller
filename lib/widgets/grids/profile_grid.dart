@@ -15,7 +15,7 @@ class ProfileGrid extends StatelessWidget {
       padding: EdgeInsets.all(0),
       children: profiles.map((profile) {
         return TextButton(
-          onPressed: () => Navigator.pushNamed(context, '/home'),
+          onPressed: () => Navigator.pushNamed(context, '/streaming'),
           child: Column(
             mainAxisAlignment: .center,
             children: [
