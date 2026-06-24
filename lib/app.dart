@@ -2,12 +2,15 @@ import 'package:am3_taller/presentation/auth/login.dart';
 import 'package:am3_taller/presentation/auth/register.dart';
 import 'package:am3_taller/presentation/profiles/choose_profile.dart';
 import 'package:am3_taller/presentation/profiles/create_profile.dart';
+import 'package:am3_taller/presentation/streaming/account.dart';
 import 'package:am3_taller/presentation/streaming/favorites.dart';
 import 'package:am3_taller/presentation/streaming/home.dart';
 import 'package:am3_taller/presentation/streaming/movie_detail.dart';
 import 'package:am3_taller/presentation/streaming/movies.dart';
 import 'package:am3_taller/presentation/streaming/search.dart';
 import 'package:am3_taller/presentation/streaming/series.dart';
+import 'package:am3_taller/presentation/streaming/contact.dart';
+import 'package:am3_taller/presentation/streaming/terms.dart';
 import 'package:am3_taller/presentation/welcome/welcome.dart';
 import 'package:am3_taller/presentation/profiles/profile.dart';
 import 'package:am3_taller/presentation/streaming/streaming.dart';
@@ -42,6 +45,9 @@ class MainApp extends StatelessWidget {
         "/movie-detail": (context) => MovieDetailScreen(),
         "/series": (context) => SeriesScreen(),
         "/movies": (context) => MoviesScreen(),
+        "/account": (context) => AccountScreen(),
+        "/terms": (context) => TermsScreen(),
+        "/contact": (context) => ContactScreen(),
       },
     );
   }
