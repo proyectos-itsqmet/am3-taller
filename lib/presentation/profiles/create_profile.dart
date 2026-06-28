@@ -1,9 +1,15 @@
-import 'package:am3_taller/widgets/form/custom_input_field.dart';
 import 'package:flutter/material.dart';
 
-class CreateProfile extends StatelessWidget {
+class CreateProfile extends StatefulWidget {
   const CreateProfile({super.key});
 
+  @override
+  State<CreateProfile> createState() => _CreateProfileState();
+}
+
+class _CreateProfileState extends State<CreateProfile> {
+  TextEditingController profile = TextEditingController();
+  bool isEnabled = false;
   @override
   Widget build(BuildContext context) {
     TextEditingController profileName = TextEditingController();
@@ -29,15 +35,38 @@ class CreateProfile extends StatelessWidget {
                 errorBuilder: (context, error, stackTrace) => Text('no'),
               ),
               TextButton(
-                onPressed: () => Navigator.pushNamed(context, '/choose-profile'),
+                onPressed: () =>
+                    Navigator.pushNamed(context, '/choose-profile'),
                 child: Text(
                   'Escoge un avatar',
                   style: TextStyle(color: Colors.white),
                 ),
               ),
-              CustomInputField(
-                label: 'Nombre del perfil',
-                controller: profileName,
+              TextField(
+                style: TextStyle(color: Colors.white),
+                controller: profile,
+                onChanged: (value) {
+                  setState(() {
+                    isEnabled = value.trim().isNotEmpty;
+                  });
+                },
+                decoration: InputDecoration(
+                  label: Text('Nombre del perfil'),
+                  labelStyle: TextStyle(color: Colors.grey[400]),
+                  fillColor: Color(0xFF2A2A2A),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                    borderSide: BorderSide(color: Colors.grey[700]!, width: 1),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                    borderSide: BorderSide(
+                      color: Colors.blueAccent,
+                      width: 1.5,
+                    ),
+                  ),
+                  suffixIcon: Icon(Icons.person_2),
+                ),
               ),
               Spacer(),
               SizedBox(
@@ -45,7 +74,9 @@ class CreateProfile extends StatelessWidget {
                 child: FilledButton(
                   style: ButtonStyle(
                     backgroundColor: WidgetStatePropertyAll(
-                      Color.fromRGBO(0, 100, 255, 100),
+                      isEnabled
+                          ? Color.fromRGBO(0, 100, 255, 100)
+                          : Colors.grey[700],
                     ),
                     shape: WidgetStatePropertyAll(
                       RoundedRectangleBorder(
@@ -53,7 +84,10 @@ class CreateProfile extends StatelessWidget {
                       ),
                     ),
                   ),
-                  onPressed: () => saveProfile(context, profileName.text),
+                  onPressed: () {
+                    if (!isEnabled) return;
+                    saveProfile(context, profileName.text);
+                  },
                   child: Text('Guardar perfil'),
                 ),
               ),
@@ -66,7 +100,6 @@ class CreateProfile extends StatelessWidget {
 }
 
 void saveProfile(BuildContext context, String profileName) {
-  if (profileName.isEmpty) return;
 
   Navigator.pop(context);
 }

@@ -31,7 +31,7 @@ class _CustomInputFieldState extends State<CustomInputField> {
       lastDate: DateTime(2100),
     );
     if (picked != null) {
-      widget.controller.text = "${picked.day}/${picked.month}/${picked.year}";
+      widget.controller.text = "${picked.year}-${picked.month}-${picked.day}";
     }
   }
 

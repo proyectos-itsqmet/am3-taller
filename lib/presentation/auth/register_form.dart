@@ -1,5 +1,7 @@
+import 'package:am3_taller/main.dart';
 import 'package:am3_taller/widgets/form/custom_input_field.dart';
 import 'package:flutter/material.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 class CustomForm extends StatefulWidget {
   const CustomForm({super.key});
@@ -14,6 +16,8 @@ class CustomFormState extends State<CustomForm> {
   TextEditingController email = TextEditingController();
   TextEditingController password = TextEditingController();
   TextEditingController birthday = TextEditingController();
+
+  bool loading = false;
 
   final _formKey = GlobalKey<FormState>();
   @override
@@ -62,33 +66,79 @@ class CustomFormState extends State<CustomForm> {
                     ),
                   ),
                 ),
-                onPressed: () => {
-                  if (_formKey.currentState!.validate())
-                    {
-                      showDialog(
-                        context: context,
-                        builder: (context) => AlertDialog(
-                          title: Text('¡Éxito!'),
-                          content: Text(
-                            'Tu cuenta ha sido creada, inicia sesión.',
-                          ),
-                          actions: [
-                            ElevatedButton(
-                              onPressed: () =>
-                                  Navigator.pushNamed(context, '/login'),
-                              child: Text('Login'),
-                            ),
-                          ],
-                        ),
-                      ),
-                    },
+                onPressed: () async {
+                  setState(() {
+                    loading = true;
+                  });
+                  if (_formKey.currentState!.validate() || loading) {
+                    try {
+                      await register(
+                        context,
+                        firstName.text,
+                        lastName.text,
+                        email.text,
+                        password.text,
+                        birthday.text,
+                      );
+                    } finally {
+                      setState(() {
+                        loading = false;
+                      });
+                    }
+                  }
                 },
-                child: Text("Completar registro"),
+                child: loading
+                    ? SizedBox(
+                        height: 20,
+                        width: 20,
+                        child: CircularProgressIndicator(
+                          color: Colors.white,
+                          strokeWidth: 2,
+                        ),
+                      )
+                    : Text("Completar registro"),
               ),
             ),
           ],
         ),
       ),
     );
+  }
+}
+
+Future<void> register(
+  BuildContext context,
+  String firstName,
+  String lastName,
+  String email,
+  String password,
+  String birthday,
+) async {
+  try {
+    final AuthResponse res = await supabase.auth.signUp(
+      password: password,
+      email: email,
+    );
+    if (res.user != null && res.user != null) {
+      await supabase.from('users').insert({
+        'id': res.user?.id,
+        'last_name': lastName,
+        'first_name': firstName,
+        'birthday': birthday,
+      });
+      if (context.mounted) {
+        Navigator.pushNamed(context, '/profiles');
+      }
+    }
+  } catch (e) {
+    if (context.mounted) {
+      showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          title: Text('Error'),
+          content: Text('Ocurrio un error: ${e.toString()}'),
+        ),
+      );
+    }
   }
 }
