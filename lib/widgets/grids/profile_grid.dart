@@ -29,45 +29,43 @@ class _ProfilesListState extends State<ProfilesList> {
 
   @override
   Widget build(BuildContext context) {
-    return Obx( () {
-        if (ctrl.isLoading.value) {
-          return CircularProgressIndicator();
-        }
-        if (ctrl.profilesList.isNotEmpty) {
-
-          return GridView.count(
-            shrinkWrap: true,
-            physics: NeverScrollableScrollPhysics(),
-            crossAxisCount: 2,
-            crossAxisSpacing: 10,
-            mainAxisSpacing: 10,
-            padding: EdgeInsets.all(0),
-            children: ctrl.profilesList.map((profile) {
-              return TextButton(
-                onPressed: () => Navigator.pushNamed(context, '/streaming'),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Image.asset(
-                      profile.avatar,
-                      height: 80,
-                      errorBuilder: (context, error, stackTrace) =>
-                          Text('error'),
-                    ),
-                    Text(
-                      profile.name,
-                      style: TextStyle(fontSize: 20, color: Colors.white),
-                    ),
-                  ],
-                ),
-              );
-            }).toList(),
-          );
-        } else {
-          return Text('No existen perfiles');
-        }
-      },
-    );
+    return Obx(() {
+      if (ctrl.isLoading.value) {
+        return CircularProgressIndicator();
+      }
+      if (ctrl.profilesList.isNotEmpty) {
+        return GridView.count(
+          shrinkWrap: true,
+          physics: NeverScrollableScrollPhysics(),
+          crossAxisCount: 2,
+          crossAxisSpacing: 10,
+          mainAxisSpacing: 10,
+          padding: EdgeInsets.all(0),
+          children: ctrl.profilesList.map((profile) {
+            return TextButton(
+              onPressed: () => Navigator.pushNamed(context, '/streaming'),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image.asset(
+                    profile.avatar,
+                    height: 80,
+                    errorBuilder: (context, error, stackTrace) =>
+                        Image.asset("assets/avatars/default.png", height: 80),
+                  ),
+                  Text(
+                    profile.name,
+                    style: TextStyle(fontSize: 20, color: Colors.white),
+                  ),
+                ],
+              ),
+            );
+          }).toList(),
+        );
+      } else {
+        return Text('No existen perfiles');
+      }
+    });
   }
 }
