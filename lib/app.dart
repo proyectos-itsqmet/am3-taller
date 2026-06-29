@@ -15,13 +15,14 @@ import 'package:am3_taller/presentation/welcome/welcome.dart';
 import 'package:am3_taller/presentation/profiles/profile.dart';
 import 'package:am3_taller/presentation/streaming/streaming.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class MainApp extends StatelessWidget {
   const MainApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(

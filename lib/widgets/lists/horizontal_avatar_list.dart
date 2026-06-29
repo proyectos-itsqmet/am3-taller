@@ -20,7 +20,7 @@ class HorizontalAvatarList extends StatelessWidget {
           final item = entry.value;
 
           return IconButton(
-            onPressed: () => Navigator.pop(context),
+            onPressed: () => onSelected(entry.value),
             icon: Image.asset(item.url, width: 80),
           );
         }).toList(),

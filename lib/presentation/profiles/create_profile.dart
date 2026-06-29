@@ -1,4 +1,8 @@
+import 'package:am3_taller/main.dart';
+import 'package:am3_taller/utils/controller/auth_controller.dart';
+import 'package:am3_taller/utils/controller/profile_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class CreateProfile extends StatefulWidget {
   const CreateProfile({super.key});
@@ -8,17 +12,20 @@ class CreateProfile extends StatefulWidget {
 }
 
 class _CreateProfileState extends State<CreateProfile> {
-  TextEditingController profile = TextEditingController();
+  TextEditingController profileName = TextEditingController();
+  ProfileController ctrl = Get.put(ProfileController());
+  AuthController authCtrl = Get.put(AuthController());
+
   bool isEnabled = false;
+  bool loading = false;
   @override
   Widget build(BuildContext context) {
-    TextEditingController profileName = TextEditingController();
     return Scaffold(
       appBar: AppBar(
         title: Text(
           'Crear perfil',
           style: TextStyle(color: Colors.white),
-          textAlign: .center,
+          textAlign: TextAlign.center,
         ),
         centerTitle: true,
         backgroundColor: Color.fromRGBO(0, 100, 255, 100),
@@ -29,11 +36,11 @@ class _CreateProfileState extends State<CreateProfile> {
           padding: const EdgeInsets.fromLTRB(20, 0, 20, 40),
           child: Column(
             children: [
-              Image.asset(
-                'assets/avatars/default.png',
+              Obx(() => Image.asset(
+                ctrl.profile.value ?? 'assets/avatars/default.png',
                 width: 120,
                 errorBuilder: (context, error, stackTrace) => Text('no'),
-              ),
+              )),
               TextButton(
                 onPressed: () =>
                     Navigator.pushNamed(context, '/choose-profile'),
@@ -44,7 +51,7 @@ class _CreateProfileState extends State<CreateProfile> {
               ),
               TextField(
                 style: TextStyle(color: Colors.white),
-                controller: profile,
+                controller: profileName,
                 onChanged: (value) {
                   setState(() {
                     isEnabled = value.trim().isNotEmpty;
@@ -84,11 +91,38 @@ class _CreateProfileState extends State<CreateProfile> {
                       ),
                     ),
                   ),
-                  onPressed: () {
+                  onPressed: () async {
                     if (!isEnabled) return;
-                    saveProfile(context, profileName.text);
+                    try {
+                      setState(() {
+                        loading = true;
+                      });
+                      await saveProfile(
+                        context,
+                        profileName.text,
+                        ctrl.profile.value ?? '',
+                        authCtrl.user.value!.id,
+                      );
+                      ctrl.loadProfiles();
+                      if (context.mounted) Navigator.pop(context);
+                    } catch (e) {
+                      SnackBar(content: Text(e.toString()));
+                    } finally {
+                      setState(() {
+                        loading = false;
+                      });
+                    }
                   },
-                  child: Text('Guardar perfil'),
+                  child: loading
+                      ? SizedBox(
+                          height: 20,
+                          width: 20,
+                          child: CircularProgressIndicator(
+                            color: Colors.white,
+                            strokeWidth: 2,
+                          ),
+                        )
+                      : Text('Guardar perfil'),
                 ),
               ),
             ],
@@ -99,7 +133,15 @@ class _CreateProfileState extends State<CreateProfile> {
   }
 }
 
-void saveProfile(BuildContext context, String profileName) {
-
-  Navigator.pop(context);
+Future<void> saveProfile(
+  BuildContext context,
+  String profileName,
+  String url,
+  String userId,
+) async {
+  await supabase.from('profiles').insert({
+    'user_id': userId,
+    'avatar': url,
+    'name': profileName,
+  });
 }

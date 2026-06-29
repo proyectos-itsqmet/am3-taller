@@ -32,11 +32,11 @@ class CustomFormState extends State<CustomForm> {
           children: [
             CustomInputField(
               label: 'Ingresa tus apellidos',
-              controller: firstName,
+              controller: lastName,
             ),
             CustomInputField(
               label: 'Ingresa tus nombres',
-              controller: lastName,
+              controller: firstName,
             ),
             CustomInputField(
               label: 'Ingresa tu correo electronico',
