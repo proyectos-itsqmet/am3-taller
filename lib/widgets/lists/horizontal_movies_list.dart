@@ -1,11 +1,11 @@
-import 'package:am3_taller/models/movies.dart';
+import 'package:am3_taller/models/item.dart';
 import 'package:am3_taller/utils/constants/sizes.dart';
 import 'package:am3_taller/widgets/spacer/custom_spacer.dart';
 import 'package:flutter/material.dart';
 
 class HorizontaMovieslList extends StatelessWidget {
   final String title;
-  final List<Movies> movies;
+  final List<Item> movies;
 
   const HorizontaMovieslList({
     super.key,
@@ -43,7 +43,7 @@ class HorizontaMovieslList extends StatelessWidget {
                 onTap: () => Navigator.pushNamed(
                   context,
                   "/movie-detail",
-                  arguments: {"id": item.id},
+                  arguments: item,
                 ),
                 child: Container(
                   margin: EdgeInsets.only(
@@ -54,7 +54,7 @@ class HorizontaMovieslList extends StatelessWidget {
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.all(Radius.circular(12)),
                     image: DecorationImage(
-                      image: NetworkImage(item.image),
+                      image: NetworkImage(item.posterUrl ?? ""),
                       fit: BoxFit.fill,
                     ),
                   ),

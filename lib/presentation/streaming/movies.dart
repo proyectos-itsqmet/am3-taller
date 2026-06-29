@@ -1,4 +1,5 @@
-import 'package:am3_taller/utils/constants/movies_list.dart';
+import 'package:am3_taller/main.dart';
+import 'package:am3_taller/models/item.dart';
 import 'package:am3_taller/utils/constants/sizes.dart';
 import 'package:am3_taller/widgets/grids/custom_grid.dart';
 import 'package:am3_taller/widgets/spacer/custom_spacer.dart';
@@ -20,11 +21,37 @@ class MoviesScreen extends StatelessWidget {
           child: Column(
             children: [
               CustomSpacer(height: CustomSizes.spaceBtwItems),
-              CustomGrid(movies: movies),
+              FutureBuilder<List<Item>>(
+                future: fetchMovies(),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return const CircularProgressIndicator();
+                  }
+
+                  if (snapshot.hasError) {
+                    return Text(
+                      snapshot.error.toString(),
+                      style: TextStyle(color: Colors.white),
+                    );
+                  }
+
+                  if (snapshot.hasData) {
+                    return CustomGrid(movies: snapshot.data!);
+                  }
+
+                  return const Text("No se encontraron datos");
+                },
+              ),
             ],
           ),
         ),
       ),
     );
   }
+}
+
+Future<List<Item>> fetchMovies() async {
+  final data = await supabase.from('items').select().eq('type', 'MOVIE');
+
+  return data.map((row) => Item.fromMap(row)).toList();
 }

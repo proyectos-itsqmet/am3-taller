@@ -27,7 +27,7 @@ class WelcomeCarousel extends StatelessWidget {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.all(Radius.circular(12)),
                 image: DecorationImage(
-                  image: NetworkImage(i.image),
+                  image: NetworkImage(i.posterUrl ?? ""),
                   fit: BoxFit.fill,
                 ),
               ),

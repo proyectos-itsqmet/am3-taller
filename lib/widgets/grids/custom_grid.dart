@@ -1,9 +1,9 @@
-import 'package:am3_taller/models/movies.dart';
+import 'package:am3_taller/models/item.dart';
 import 'package:am3_taller/utils/constants/sizes.dart';
 import 'package:flutter/material.dart';
 
 class CustomGrid extends StatelessWidget {
-  final List<Movies> movies;
+  final List<Item> movies;
 
   const CustomGrid({super.key, required this.movies});
 
@@ -26,7 +26,7 @@ class CustomGrid extends StatelessWidget {
         return Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.all(Radius.circular(12)),
-            image: DecorationImage(image: NetworkImage(item.image)),
+            image: DecorationImage(image: NetworkImage(item.posterUrl ?? "")),
           ),
         );
       },

@@ -1,3 +1,5 @@
+import 'package:am3_taller/models/item.dart';
+import 'package:am3_taller/presentation/streaming/video_player_screen.dart';
 import 'package:am3_taller/utils/constants/movies_list.dart';
 import 'package:am3_taller/utils/constants/sizes.dart';
 import 'package:am3_taller/widgets/grids/custom_grid.dart';
@@ -10,8 +12,7 @@ class MovieDetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
-    final movie = ModalRoute.of(context)!.settings.arguments as Map;
-    final item = movies[movie["id"] - 1];
+    final item = ModalRoute.of(context)!.settings.arguments as Item;
 
     return Scaffold(
       backgroundColor: Colors.black,
@@ -34,7 +35,7 @@ class MovieDetailScreen extends StatelessWidget {
             Stack(
               children: [
                 Image.network(
-                  item.image,
+                  item.posterUrl ?? "",
                   height: height * 0.55,
                   width: double.infinity,
                   fit: BoxFit.cover,
@@ -63,7 +64,7 @@ class MovieDetailScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    item.title,
+                    item.name,
                     style: const TextStyle(
                       color: Colors.white,
                       fontSize: 24,
@@ -76,7 +77,16 @@ class MovieDetailScreen extends StatelessWidget {
                     children: [
                       Expanded(
                         child: FilledButton.icon(
-                          onPressed: () {},
+                          onPressed: item.videoUrl == null
+                              ? null
+                              : () => Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => VideoPlayerScreen(
+                                      videoUrl: item.videoUrl!,
+                                    ),
+                                  ),
+                                ),
                           style: ButtonStyle(
                             backgroundColor: WidgetStatePropertyAll(
                               Colors.white,
