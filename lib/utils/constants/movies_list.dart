@@ -2,46 +2,66 @@ import 'package:am3_taller/models/item.dart';
 
 final List<Item> movies = [
   Item(
-    id: 1,
-    name: "Spider-Man: Brand New Day (2026)",
+    id: 8,
+    name: "Backrooms",
     description:
-        "Fighting crime full-time as Spider-Man in a world that doesn't remember him—and the pressure of seeing his old friends move on without him—sparks a change in Peter Parker he may not have the power to control. But that transformation might also be the only thing that can stop a shocking new threat to the city and those he loves - a powerful villain no one can even see.",
-    rated: "PG-13",
+        "Una puerta extraña aparece en el sótano de una sala de exposición de muebles.",
+    rated: "+18",
     type: "MOVIE",
+    releaseDate: DateTime(2026, 5, 27),
+    duration: 105,
     posterUrl:
-        "https://image.tmdb.org/t/p/w600_and_h900_face/yyB2VJEW3an2xCdcYCPQhn9QERR.jpg",
-    videoUrl: "https://www.youtube.com/watch?v=pqLSLoDkZWE",
+        "https://image.tmdb.org/t/p/w500/u3CfgxtnZRxbIm8JuVTzt3DXQhg.jpg",
+    videoUrl: "https://www.youtube.com/watch?v=0HjdiohVOik",
+    voteAverage: 6.873,
+    genreName: "Terror",
   ),
   Item(
-    id: 2,
-    name: "Toy Story 5 (2026)",
+    id: 9,
+    name: "Toy Story 5",
     description:
-        "When Bonnie receives a Lilypad tablet as a gift and becomes obsessed, Buzz, Woody, Jessie and the rest of the gang's jobs become exponentially harder when they have to go head to head with the all-new threat to playtime.",
-    rated: "G",
+        "Buzz, Woody, Jessie y el resto de la pandilla tienen un trabajo exponencialmente más difícil cuando se enfrentan a esta nueva amenaza para la hora de jugar: la tecnología.",
+    rated: "+12",
     type: "MOVIE",
+    releaseDate: DateTime(2026, 6, 17),
+    duration: 102,
     posterUrl:
-        "https://image.tmdb.org/t/p/w600_and_h900_face/pxG26JdyuiDvJbSoucknaFiLeZD.jpg",
-    videoUrl: "https://www.youtube.com/watch?v=s_qpMMkvHYE",
+        "https://image.tmdb.org/t/p/w500/1yF3AztF3rQ8MZ8En8974AWo5zZ.jpg",
+    videoUrl:
+        "https://wtsrlvhkztbqnxupxwre.supabase.co/storage/v1/object/public/trailers/9.mp4",
+    voteAverage: 7.41,
+    genreName: "Animación",
   ),
   Item(
-    id: 3,
-    name: "Michael (2026)",
+    id: 21,
+    name: "Obsesión",
     description:
-        "The story of Michael Jackson, one of the most influential artists the world has ever known, and his life beyond the music. His journey from the discovery of his extraordinary talent as the lead of the Jackson Five, to the visionary artist whose creative ambition fueled a relentless pursuit to become the biggest entertainer in the world, highlighting both his life off-stage and some of the most iconic performances from his early solo career.",
-    rated: "PG-13",
+        "El anhelo romántico desesperado de un chico por su amor platónico de toda la vida desencadena un siniestro hechizo: Niki se vuelve irracionalmente obsesiva hasta convertirse en la sombra de Bear. Una fantasía aparentemente inofensiva que se convertirá en una perturbadora pesadilla.",
+    rated: "+18",
     type: "MOVIE",
+    releaseDate: DateTime(2026, 5, 13),
+    duration: 108,
     posterUrl:
-        "https://image.tmdb.org/t/p/w600_and_h900_face/zm0KAbOjlt9eR5y7vDiL2dEOwMl.jpg",
-    videoUrl: "https://www.youtube.com/watch?v=7wWEvqjsvxE",
+        "https://image.tmdb.org/t/p/w500/ohi9xvbBUymM4SuIOSlt1xbLRQQ.jpg",
+    videoUrl:
+        "https://wtsrlvhkztbqnxupxwre.supabase.co/storage/v1/object/public/trailers/21.mp4",
+    voteAverage: 7.911,
+    genreName: "Terror",
   ),
   Item(
-    id: 4,
-    name: "Backrooms (2026)",
-    description: "You are not supposed to be here.",
-    rated: "R",
+    id: 6,
+    name: "Michael",
+    description:
+        "El viaje de Michael Jackson más allá de la música, desde el descubrimiento de su extraordinario talento como líder de los Jackson Five hasta convertirse en una visionaria estrella cuya ambición creativa despertó un incansable afán por consagrarse como el mayor icono de la industria del entretenimiento.",
+    rated: "+12",
     type: "MOVIE",
+    releaseDate: DateTime(2026, 4, 22),
+    duration: 128,
     posterUrl:
-        "https://image.tmdb.org/t/p/w600_and_h900_face/rhGx6E3qRNMgj3i5su2oukNHwIQ.jpg",
-    videoUrl: "https://www.youtube.com/watch?v=j6xBUJSm_S8",
+        "https://image.tmdb.org/t/p/w500/2uK36ujoDXOfNiJ5Yp3raVprB51.jpg",
+    videoUrl:
+        "https://wtsrlvhkztbqnxupxwre.supabase.co/storage/v1/object/public/trailers/6.mp4",
+    voteAverage: 8.685,
+    genreName: "Drama",
   ),
 ];

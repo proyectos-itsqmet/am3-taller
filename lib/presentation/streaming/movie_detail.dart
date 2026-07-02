@@ -2,6 +2,7 @@ import 'package:am3_taller/models/item.dart';
 import 'package:am3_taller/presentation/streaming/video_player_screen.dart';
 import 'package:am3_taller/utils/constants/movies_list.dart';
 import 'package:am3_taller/utils/constants/sizes.dart';
+import 'package:am3_taller/widgets/buttons/favorite_button.dart';
 import 'package:am3_taller/widgets/grids/custom_grid.dart';
 import 'package:am3_taller/widgets/spacer/custom_spacer.dart';
 import 'package:flutter/material.dart';
@@ -108,21 +109,7 @@ class MovieDetailScreen extends StatelessWidget {
                         ),
                       ),
 
-                      IconButton.filled(
-                        onPressed: () {},
-                        style: ButtonStyle(
-                          tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                          backgroundColor: WidgetStatePropertyAll(
-                            Colors.white.withValues(alpha: 0.30),
-                          ),
-                          shape: WidgetStatePropertyAll(
-                            RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                          ),
-                        ),
-                        icon: Icon(Icons.add_rounded, color: Colors.white),
-                      ),
+                      FavoriteButton(itemId: item.id),
 
                       IconButton.filled(
                         onPressed: () {},
@@ -143,7 +130,7 @@ class MovieDetailScreen extends StatelessWidget {
                   ),
                   CustomSpacer(height: CustomSizes.spaceBtwItems),
                   Text(
-                    item.description,
+                    item.description ?? "",
                     style: TextStyle(
                       color: Colors.white.withValues(alpha: 0.7),
                       fontSize: CustomSizes.fontSizeSm,
