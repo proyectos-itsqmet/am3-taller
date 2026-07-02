@@ -1,6 +1,7 @@
 import 'package:am3_taller/main.dart';
 import 'package:am3_taller/models/item.dart';
 import 'package:am3_taller/utils/constants/sizes.dart';
+import 'package:am3_taller/widgets/shimmers/custom_carousel_shimmer.dart';
 import 'package:am3_taller/widgets/spacer/custom_spacer.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
@@ -16,7 +17,7 @@ class HomeCarousel extends StatelessWidget {
       future: fetchMovies(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return CircularProgressIndicator();
+          return CustomCarouselShimmer();
         }
 
         if (snapshot.hasError) {
@@ -100,10 +101,11 @@ class HomeCarousel extends StatelessWidget {
 }
 
 Future<List<Item>> fetchMovies() async {
-  final data = await supabase
+  final List data = await supabase
       .from('items')
       .select()
-      .ilike('video_url', '%supabase%');
+      .ilike('video_url', '%militaristically%')
+      .limit(5);
 
-  return data.map((row) => Item.fromMap(row)).toList();
+  return data.map((row) => Item.fromJson(row)).toList();
 }

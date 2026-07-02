@@ -2,6 +2,7 @@ import 'package:am3_taller/main.dart';
 import 'package:am3_taller/models/item.dart';
 import 'package:am3_taller/utils/constants/sizes.dart';
 import 'package:am3_taller/widgets/grids/custom_grid.dart';
+import 'package:am3_taller/widgets/shimmers/cutoms_grid_shimmer.dart';
 import 'package:am3_taller/widgets/spacer/custom_spacer.dart';
 import 'package:flutter/material.dart';
 
@@ -25,7 +26,7 @@ class SeriesScreen extends StatelessWidget {
                 future: fetchSeries(),
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
-                    return const CircularProgressIndicator();
+                    return CutomsGridShimmer();
                   }
 
                   if (snapshot.hasError) {
@@ -42,6 +43,7 @@ class SeriesScreen extends StatelessWidget {
                   return const Text("No se encontraron datos");
                 },
               ),
+              CustomSpacer(height: CustomSizes.spaceBtwSections * 5),
             ],
           ),
         ),
@@ -51,7 +53,7 @@ class SeriesScreen extends StatelessWidget {
 }
 
 Future<List<Item>> fetchSeries() async {
-  final data = await supabase.from('items').select().eq('type', 'SERIE');
+  final List data = await supabase.from('items').select().eq('type', 'SERIE');
 
-  return data.map((row) => Item.fromMap(row)).toList();
+  return data.map((row) => Item.fromJson(row)).toList();
 }

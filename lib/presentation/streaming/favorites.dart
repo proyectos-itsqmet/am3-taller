@@ -1,6 +1,8 @@
-import 'package:am3_taller/utils/constants/movies_list.dart';
+import 'package:am3_taller/main.dart';
+import 'package:am3_taller/models/item.dart';
 import 'package:am3_taller/utils/constants/sizes.dart';
 import 'package:am3_taller/widgets/grids/custom_grid.dart';
+import 'package:am3_taller/widgets/shimmers/cutoms_grid_shimmer.dart';
 import 'package:am3_taller/widgets/spacer/custom_spacer.dart';
 import 'package:flutter/material.dart';
 
@@ -25,7 +27,22 @@ class FavoritesScreen extends StatelessWidget {
                   ),
                 ),
                 CustomSpacer(height: CustomSizes.spaceBtwItems),
-                CustomGrid(movies: movies),
+                FutureBuilder(
+                  future: fetchFavorites(),
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return CutomsGridShimmer();
+                    }
+
+                    if (snapshot.hasData) {
+                      final movies = snapshot.data;
+
+                      return CustomGrid(movies: movies!);
+                    } else {
+                      return SizedBox();
+                    }
+                  },
+                ),
               ],
             ),
           ),
@@ -33,4 +50,19 @@ class FavoritesScreen extends StatelessWidget {
       ),
     );
   }
+}
+
+Future<List<Item>> fetchFavorites() async {
+  final userId = supabase.auth.currentUser?.id;
+  if (userId == null) return [];
+
+  final List data = await supabase
+      .from('items')
+      .select(
+        'id, name, description, rated, type, release_date, duration, '
+        'poster_url, video_url, vote_average, favorites!inner(user_id)',
+      )
+      .eq('favorites.user_id', userId);
+
+  return data.map((row) => Item.fromJson(row)).toList();
 }

@@ -1,40 +1,67 @@
+import 'dart:convert';
+
+List<Item> itemFromJson(String str) =>
+    List<Item>.from(json.decode(str).map((x) => Item.fromJson(x)));
+
+String itemToJson(List<Item> data) =>
+    json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
+
 class Item {
   final int id;
-  final String name;
-  final String description;
-  final String rated;
-  final String? type;
-  String? releaseDate;
+  String name;
+  String? description;
+  String? rated;
+  String? type;
+  DateTime? releaseDate;
   int? duration;
   String? posterUrl;
   String? videoUrl;
   double? voteAverage;
+  String? genreName;
 
   Item({
     required this.id,
     required this.name,
-    required this.description,
-    required this.rated,
-    required this.type,
+    this.description,
+    this.rated,
+    this.type,
     this.releaseDate,
     this.duration,
     this.posterUrl,
     this.videoUrl,
     this.voteAverage,
+    this.genreName,
   });
 
-  factory Item.fromMap(Map<String, dynamic> map) {
-    return Item(
-      id: map['id'] as int,
-      name: map['name'] as String? ?? "",
-      description: map['description'] as String? ?? "",
-      rated: map['rated'] as String? ?? "",
-      type: map['type'] as String?,
-      releaseDate: map['release_date'] as String?,
-      duration: map['duration'] as int?,
-      posterUrl: map['poster_url'] as String?,
-      videoUrl: map['video_url'] as String?,
-      voteAverage: (map['vote_average'] as num?)?.toDouble(),
-    );
-  }
+  factory Item.fromJson(Map<String, dynamic> json) => Item(
+    id: json["id"],
+    name: json["name"] ?? "",
+    description: json["description"] ?? "",
+    rated: json["rated"] ?? "",
+    type: json["type"] ?? "",
+    releaseDate: json["release_date"] == null
+        ? null
+        : DateTime.parse(json["release_date"]),
+    duration: int.tryParse(json["duration"].toString()),
+    posterUrl: json["poster_url"] ?? "",
+    videoUrl: json["video_url"] ?? "",
+    voteAverage: double.tryParse(json["vote_average"].toString()),
+    genreName: json["genre_name"] ?? "",
+  );
+
+  Map<String, dynamic> toJson() => {
+    "id": id,
+    "name": name,
+    "description": description,
+    "rated": rated,
+    "type": type,
+    "release_date": releaseDate == null
+        ? null
+        : "${releaseDate!.year.toString().padLeft(4, '0')}-${releaseDate!.month.toString().padLeft(2, '0')}-${releaseDate!.day.toString().padLeft(2, '0')}",
+    "duration": duration,
+    "poster_url": posterUrl,
+    "video_url": videoUrl,
+    "vote_average": voteAverage,
+    "genre_name": genreName,
+  };
 }

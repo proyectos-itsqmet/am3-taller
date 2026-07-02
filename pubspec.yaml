@@ -16,6 +16,7 @@ dependencies:
   get: ^4.7.3
   video_player: ^2.11.1
   youtube_player_flutter: ^10.0.1
+  shimmer: ^3.0.0
 
 dev_dependencies:
   flutter_test:

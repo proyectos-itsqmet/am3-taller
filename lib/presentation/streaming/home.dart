@@ -1,5 +1,4 @@
 import 'package:am3_taller/utils/constants/categories_list.dart';
-import 'package:am3_taller/utils/constants/movies_list.dart';
 import 'package:am3_taller/utils/constants/sizes.dart';
 import 'package:am3_taller/widgets/carousel/home_carousel.dart';
 import 'package:am3_taller/widgets/lists/horizontal_category_list.dart';
@@ -21,12 +20,14 @@ class HomeScreen extends StatelessWidget {
               HorizontalCategoryList(categories: categories),
               HomeCarousel(),
               CustomSpacer(height: CustomSizes.spaceBtwItems),
-              HorizontaMovieslList(title: "Lanzamientos", movies: movies),
+              HorizontaMovieslList(title: "Accion", genre: 28),
               CustomSpacer(height: CustomSizes.spaceBtwItems),
-              HorizontaMovieslList(title: "Seguir viendo", movies: movies),
+              HorizontaMovieslList(title: "Aventura", genre: 12),
               CustomSpacer(height: CustomSizes.spaceBtwItems),
-              HorizontaMovieslList(title: "Recomendadas", movies: movies),
+              HorizontaMovieslList(title: "Animacion", genre: 16),
               CustomSpacer(height: CustomSizes.spaceBtwItems),
+              HorizontaMovieslList(title: "Terror", genre: 27),
+              CustomSpacer(height: CustomSizes.spaceBtwItems * 5),
             ],
           ),
         ),

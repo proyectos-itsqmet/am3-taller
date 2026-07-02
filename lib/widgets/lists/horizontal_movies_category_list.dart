@@ -1,11 +1,11 @@
-import 'package:am3_taller/models/categories.dart';
+import 'package:am3_taller/utils/constants/movies_category_list.dart';
 import 'package:am3_taller/utils/constants/sizes.dart';
 import 'package:flutter/material.dart';
 
 class HorizontalMoviesCategoryList extends StatefulWidget {
-  final List<Categories> categories;
+  final Function(int genreId)? onPressed;
 
-  const HorizontalMoviesCategoryList({super.key, required this.categories});
+  const HorizontalMoviesCategoryList({super.key, required this.onPressed});
 
   @override
   State<HorizontalMoviesCategoryList> createState() =>
@@ -14,21 +14,21 @@ class HorizontalMoviesCategoryList extends StatefulWidget {
 
 class _HorizontalMoviesCategoryListState
     extends State<HorizontalMoviesCategoryList> {
-  int selected = 0;
+  int selected = 12;
 
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: Row(
-        children: widget.categories.asMap().entries.map((entry) {
+        children: moviesCategory.asMap().entries.map((entry) {
           final index = entry.key;
           final item = entry.value;
 
           return Container(
             margin: EdgeInsets.only(
               left: index == 0 ? CustomSizes.md : 0,
-              right: index == widget.categories.length - 1 ? CustomSizes.md : 0,
+              right: index == moviesCategory.length - 1 ? CustomSizes.md : 0,
             ),
             decoration: BoxDecoration(
               border: Border(
@@ -39,9 +39,12 @@ class _HorizontalMoviesCategoryListState
               ),
             ),
             child: TextButton(
-              onPressed: () => setState(() {
-                selected = index;
-              }),
+              onPressed: () {
+                setState(() {
+                  selected = index;
+                });
+                widget.onPressed?.call(item.id);
+              },
               style: ButtonStyle(
                 shape: WidgetStatePropertyAll(
                   RoundedRectangleBorder(
@@ -50,7 +53,7 @@ class _HorizontalMoviesCategoryListState
                 ),
               ),
               child: Text(
-                item.title,
+                item.name,
                 style: TextStyle(
                   color: selected == index ? Colors.white : Colors.white70,
                 ),
