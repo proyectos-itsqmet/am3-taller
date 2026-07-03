@@ -23,10 +23,18 @@ class CustomGrid extends StatelessWidget {
       itemBuilder: (context, index) {
         final item = movies[index];
 
-        return Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.all(Radius.circular(12)),
-            image: DecorationImage(image: NetworkImage(item.posterUrl ?? "")),
+        return GestureDetector(
+          behavior: HitTestBehavior.opaque,
+          onTap: () => Navigator.pushNamed(
+            context,
+            "/movie-detail",
+            arguments: item,
+          ),
+          child: Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.all(Radius.circular(12)),
+              image: DecorationImage(image: NetworkImage(item.posterUrl ?? "")),
+            ),
           ),
         );
       },
