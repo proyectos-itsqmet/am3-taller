@@ -1,4 +1,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--PERMISSIONS-->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!-- image_picker opens the system camera via ACTION_IMAGE_CAPTURE, so the
+         app does NOT need the CAMERA permission. Declaring it would force a
+         runtime grant that image_picker does not request, breaking the camera. -->
+    <uses-feature android:name="android.hardware.camera" android:required="false" />
+
     <application
         android:label="am3_taller"
         android:name="${applicationName}"

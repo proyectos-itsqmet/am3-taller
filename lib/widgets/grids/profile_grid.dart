@@ -1,4 +1,5 @@
 import 'package:am3_taller/utils/controller/profile_controller.dart';
+import 'package:am3_taller/widgets/images/profile_avatar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -43,17 +44,15 @@ class _ProfilesListState extends State<ProfilesList> {
           padding: EdgeInsets.all(0),
           children: ctrl.profilesList.map((profile) {
             return TextButton(
-              onPressed: () => Navigator.pushNamed(context, '/streaming'),
+              onPressed: () {
+                ctrl.setActiveProfile(profile);
+                Navigator.pushNamed(context, '/streaming');
+              },
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Image.asset(
-                    profile.avatar,
-                    height: 80,
-                    errorBuilder: (context, error, stackTrace) =>
-                        Image.asset("assets/avatars/default.png", height: 80),
-                  ),
+                  ProfileAvatar(avatar: profile.avatar, height: 80),
                   Text(
                     profile.name,
                     style: TextStyle(fontSize: 20, color: Colors.white),
