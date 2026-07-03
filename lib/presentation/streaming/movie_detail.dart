@@ -23,12 +23,12 @@ class MovieDetailScreen extends StatelessWidget {
         backgroundColor: Colors.transparent,
         iconTheme: IconThemeData(color: Colors.white),
         elevation: 0,
-        actions: [
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.laptop_chromebook_rounded),
-          ),
-        ],
+        // actions: [
+        // IconButton(
+        //   onPressed: () {},
+        //   icon: const Icon(Icons.laptop_chromebook_rounded),
+        // ),
+        // ],
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -111,22 +111,22 @@ class MovieDetailScreen extends StatelessWidget {
                       ),
 
                       FavoriteButton(itemId: item.id),
-
-                      IconButton.filled(
-                        onPressed: () {},
-                        style: ButtonStyle(
-                          tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                          backgroundColor: WidgetStatePropertyAll(
-                            Colors.white.withValues(alpha: 0.30),
-                          ),
-                          shape: WidgetStatePropertyAll(
-                            RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                          ),
-                        ),
-                        icon: Icon(Icons.download_rounded, color: Colors.white),
-                      ),
+                      //TODO: Trailer
+                      // IconButton.filled(
+                      //   onPressed: () {},
+                      //   style: ButtonStyle(
+                      //     tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                      //     backgroundColor: WidgetStatePropertyAll(
+                      //       Colors.white.withValues(alpha: 0.30),
+                      //     ),
+                      //     shape: WidgetStatePropertyAll(
+                      //       RoundedRectangleBorder(
+                      //         borderRadius: BorderRadius.circular(8),
+                      //       ),
+                      //     ),
+                      //   ),
+                      //   icon: Icon(Icons.movie_outlined, color: Colors.white),
+                      // ),
                     ],
                   ),
                   CustomSpacer(height: CustomSizes.spaceBtwItems),
