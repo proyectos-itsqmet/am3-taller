@@ -74,6 +74,99 @@ class MovieDetailScreen extends StatelessWidget {
                     ),
                   ),
                   CustomSpacer(height: CustomSizes.spaceBtwItems),
+
+                  Wrap(
+                    crossAxisAlignment: WrapCrossAlignment.center,
+                    spacing: 10,
+                    runSpacing: 8,
+                    children: [
+                      if (item.voteAverage != null)
+                        Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            const Icon(
+                              Icons.star_rounded,
+                              color: Colors.amber,
+                              size: 18,
+                            ),
+                            const SizedBox(width: 4),
+                            Text(
+                              item.voteAverage!.toStringAsFixed(1),
+                              style: const TextStyle(
+                                color: Colors.white,
+                                fontSize: CustomSizes.fontSizeSm,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                          ],
+                        ),
+                      if (item.releaseDate != null)
+                        Text(
+                          '${item.releaseDate!.year}',
+                          style: const TextStyle(
+                            color: Colors.white70,
+                            fontSize: CustomSizes.fontSizeSm,
+                          ),
+                        ),
+                      if (item.duration != null)
+                        Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            const Icon(
+                              Icons.access_time_rounded,
+                              color: Colors.white70,
+                              size: 16,
+                            ),
+                            const SizedBox(width: 4),
+                            Text(
+                              _formatRuntime(item.duration!),
+                              style: const TextStyle(
+                                color: Colors.white70,
+                                fontSize: CustomSizes.fontSizeSm,
+                              ),
+                            ),
+                          ],
+                        ),
+                      if (item.rated != null && item.rated!.isNotEmpty)
+                        Container(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 6,
+                            vertical: 2,
+                          ),
+                          decoration: BoxDecoration(
+                            border: Border.all(color: Colors.white54),
+                            borderRadius: BorderRadius.circular(4),
+                          ),
+                          child: Text(
+                            item.rated!,
+                            style: const TextStyle(
+                              color: Colors.white70,
+                              fontSize: CustomSizes.fontSizeXs,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ),
+                      if (item.genreName != null && item.genreName!.isNotEmpty)
+                        Container(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 10,
+                            vertical: 4,
+                          ),
+                          decoration: BoxDecoration(
+                            color: Colors.white.withValues(alpha: 0.12),
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          child: Text(
+                            item.genreName!,
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontSize: CustomSizes.fontSizeXs,
+                            ),
+                          ),
+                        ),
+                    ],
+                  ),
+                  CustomSpacer(height: CustomSizes.spaceBtwItems),
                   Row(
                     spacing: CustomSizes.spaceBtwItems,
                     children: [
@@ -177,6 +270,14 @@ class MovieDetailScreen extends StatelessWidget {
       ),
     );
   }
+}
+
+String _formatRuntime(int minutes) {
+  final h = minutes ~/ 60;
+  final m = minutes % 60;
+  if (h > 0 && m > 0) return '${h}h ${m}min';
+  if (h > 0) return '${h}h';
+  return '${m}min';
 }
 
 Future<List<Item>> fetchItems() async {

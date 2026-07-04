@@ -19,7 +19,7 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
   bool _controlsVisible = true;
   bool _isFullscreen = false;
 
-  double? _dragValue;
+  // double? _dragValue;
 
   Timer? _hideTimer;
 
@@ -70,6 +70,7 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
     _startHideTimer();
   }
 
+  /*
   void _seekBy(Duration offset) {
     final value = _controller.value;
     var target = value.position + offset;
@@ -78,6 +79,7 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
     _controller.seekTo(target);
     _startHideTimer();
   }
+  */
 
   void _enterFullscreen() {
     setState(() => _isFullscreen = true);
@@ -102,6 +104,7 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
   void _toggleFullscreen() =>
       _isFullscreen ? _exitFullscreen() : _enterFullscreen();
 
+  /*
   String _format(Duration d) {
     String two(int n) => n.toString().padLeft(2, '0');
     final h = d.inHours;
@@ -109,6 +112,7 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
     final s = d.inSeconds.remainder(60);
     return h > 0 ? '${two(h)}:${two(m)}:${two(s)}' : '${two(m)}:${two(s)}';
   }
+  */
 
   @override
   Widget build(BuildContext context) {
@@ -232,12 +236,14 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         //! Atrasar 10 segundos
+        /*
         IconButton(
           iconSize: 42,
           icon: const Icon(Icons.replay_10, color: Colors.white),
           onPressed: () => _seekBy(const Duration(seconds: -10)),
         ),
         const SizedBox(width: 24),
+        */
         //! Play / Pausa / Reiniciar
         IconButton(
           iconSize: 64,
@@ -257,27 +263,34 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
             }
           },
         ),
-        const SizedBox(width: 24),
         //! Adelantar 10 segundos
+        /*
+        const SizedBox(width: 24),
         IconButton(
           iconSize: 42,
           icon: const Icon(Icons.forward_10, color: Colors.white),
           onPressed: () => _seekBy(const Duration(seconds: 10)),
         ),
+        */
       ],
     );
   }
 
   Widget _buildBottomBar(VideoPlayerValue value) {
+    //! Barra de duración
+    /*
     final maxMs = value.duration.inMilliseconds.toDouble();
     final safeMax = maxMs <= 0 ? 1.0 : maxMs;
     final currentMs = _dragValue ?? value.position.inMilliseconds.toDouble();
     final sliderValue = currentMs.clamp(0.0, safeMax).toDouble();
+    */
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 12),
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.end,
         children: [
+          /*
           Text(
             _format(Duration(milliseconds: sliderValue.round())),
             style: const TextStyle(color: Colors.white, fontSize: 12),
@@ -301,6 +314,7 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
             _format(value.duration),
             style: const TextStyle(color: Colors.white, fontSize: 12),
           ),
+          */
           //! Pantalla completa / salir
           IconButton(
             icon: Icon(

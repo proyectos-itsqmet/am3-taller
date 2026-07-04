@@ -1,6 +1,7 @@
 import 'package:am3_taller/main.dart';
 import 'package:am3_taller/widgets/form/custom_input_field.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class CustomForm extends StatefulWidget {
@@ -119,16 +120,17 @@ Future<void> register(
       password: password,
       email: email,
     );
-    if (res.user != null && res.user != null) {
+    if (res.user != null) {
       await supabase.from('users').insert({
         'id': res.user?.id,
         'last_name': lastName,
         'first_name': firstName,
         'birthday': birthday,
       });
-      if (context.mounted) {
-        Navigator.pushNamed(context, '/profiles');
-      }
+      // Tras registrarse se envía al login para que AuthController se cargue
+      // correctamente al iniciar sesión (evita el crash "AuthController not
+      // found" que ocurría al ir directo a /profiles).
+      Get.offAllNamed('/login');
     }
   } catch (e) {
     if (context.mounted) {
